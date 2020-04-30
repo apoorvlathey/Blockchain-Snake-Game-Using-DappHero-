@@ -41,70 +41,88 @@
     </h2>
     <h1 style="color: #44b9fc;">
       CURRENT GAME POOL:
-        <span
-            style="color: white;"
-            data-dh-feature="customContract"
-            data-dh-property-contract-name="snakegame"
-            data-dh-property-method-name="prizePool"
-            data-dh-property-method-id="001"
-            data-dh-property-outputs="true"
-            data-dh-property-auto-invoke="true"
-            data-dh-modifier-contract-units="wei"
-            data-dh-modifier-display-units="ether"
-        >
-        </span>
+      <span
+        style="color: white;"
+        data-dh-feature="customContract"
+        data-dh-property-contract-name="snakegame"
+        data-dh-property-method-name="prizePool"
+        data-dh-property-method-id="001"
+        data-dh-property-outputs="true"
+        data-dh-property-auto-invoke="true"
+        data-dh-modifier-contract-units="wei"
+        data-dh-modifier-display-units="ether"
+      >
+      </span>
       ETH
       <span
-            style="display: none;"
-            data-dh-feature="customContract"
-            data-dh-property-contract-name="snakegame"
-            data-dh-property-method-name="newChallenge"
-            data-dh-property-method-id="002"
-            data-dh-property-eth-value="0.001"
+        style="display: none;"
+        data-dh-feature="customContract"
+        data-dh-property-contract-name="snakegame"
+        data-dh-property-method-name="newChallenge"
+        data-dh-property-method-id="002"
+        data-dh-property-eth-value="0.001"
       >
       </span>
       <button
-            style="margin-left: 12em; border-radius: 0.5em; cursor: pointer;"
-            data-dh-property-method-id="002"
-            data-dh-property-invoke="true"
+        style="margin-left: 12em; border-radius: 0.5em; cursor: pointer;"
+        data-dh-property-method-id="002"
+        data-dh-property-invoke="true"
       >
-        Deposit 1 ETH and PLAY!
+        Deposit .001 ETH and PLAY!
       </button>
-    
+
       <span
-            style="display: none;"
-            data-dh-feature="customContract"
-            data-dh-property-contract-name="snakegame"
-            data-dh-property-method-name="userChallenge"
-            data-dh-property-method-id="003"
-            data-dh-property-auto-invoke="true"
-        ></span>
-        <input
-            style="display:none;"
-            data-dh-property-method-id="003"
-            data-dh-property-input-name="$true"
-            value="$CURRENT_USER""
-        />
-        <div
-            id="status"
-            style="display:none;"
-            data-dh-property-method-id="003"
-            data-dh-property-output-name="status"
-        >
-            STATUS
-        </div>
-        <span
-            style="display: none;"
-            data-dh-feature="customContract"
-            data-dh-property-contract-name="snakegame"
-            data-dh-property-method-name="claim"
-            data-dh-property-method-id="004"
-        >
-      </span>
+        style="display: none;"
+        data-dh-feature="customContract"
+        data-dh-property-contract-name="snakegame"
+        data-dh-property-method-name="userChallenge"
+        data-dh-property-method-id="003"
+        data-dh-property-auto-invoke="true"
+      ></span>
+      <input
+        style="display: none;"
+        data-dh-property-method-id="003"
+        data-dh-property-input-name="$true"
+        value="$CURRENT_USER"
+      />
       <button
-            style="margin-left: 12em; border-radius: 0.5em; cursor: pointer;"
-            data-dh-property-method-id="002"
-            data-dh-property-invoke="true"
+        id="get-status-btn"
+        style="display: none"
+        data-dh-property-method-id="003"
+        data-dh-property-invoke="true"
+      >
+        Get Status
+      </button>
+      <div
+        id="status"
+        style="display: none;"
+        data-dh-property-method-id="003"
+        data-dh-property-output-name="status"
+      >STATUS</div>
+      <span
+        style="display: none;"
+        data-dh-feature="customContract"
+        data-dh-property-contract-name="snakegame"
+        data-dh-property-method-name="claim"
+        data-dh-property-method-id="004"
+      >
+      </span>
+      <input
+        id="claim-input"
+        style="display: none;"
+        data-dh-property-method-id="004"
+        data-dh-property-input-name="_score"
+      />
+      <button
+        id="claim-button"
+        style="
+          display: none;
+          margin-left: 12em;
+          border-radius: 0.5em;
+          cursor: pointer;
+        "
+        data-dh-property-method-id="004"
+        data-dh-property-invoke="true"
       >
         Claim Prize
       </button>
@@ -117,11 +135,13 @@
     ></script>
     <script>
       function getStatus() {
-        return($("#status").text())
+        console.log("Status:", $("#status").text());
+        return $("#status").text();
       }
 
       function claimPrize(_score) {
-
+        $("#claim-input").val(_score)
+        $("#claim-button").show();
       }
     </script>
   </body>

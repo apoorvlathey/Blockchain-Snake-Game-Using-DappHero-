@@ -16,9 +16,11 @@ var Menu = {
 	},
 
 	startGame: function() {
-		if(getStatus()) {
+		if(getStatus() === "true") {
 			// change state to actual game
 			this.state.start('Game');
+		} else if(getStatus() === "STATUS")  {
+			console.log("Wait to Load web3 data")
 		} else {
 			alert("Deposit ETH to Play!")
 		}
